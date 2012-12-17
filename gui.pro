@@ -3,7 +3,7 @@ SOURCES =gui.cpp main.cpp swarm_world.cpp robot.cpp robotAlg.cpp box.cpp point.c
 FORMS =swarm_gui.ui
 
 #install
-target.path=gui
+target.path=swarm_sim
 sources.files=$$SOURCES $$HEADERS $$RESOURCES $$FORMS *.pro
 sources.path=.
 INSTALLS += target sources

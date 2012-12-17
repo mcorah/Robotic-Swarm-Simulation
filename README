@@ -1,0 +1,54 @@
+Robotic Swarm Simulator - Micah Corah
+	Created using C++ and Qt
+
+Build instructions:
+	qmake
+	make
+
+Run:
+	./swarm_sim
+
+Description:
+	This is a simulation of a robotic swarm. The robots have
+	the goal of sorting a field of colored boxes into piles.
+	Robots can pick up one box at a time and are only aware of
+	what is in their sensor radius. However, there are some
+	consructive behaviors that allow robots to create a model
+	of their environment. At the beginning a field is generated
+	according to entered parameters. Robots then follow selected
+	parameters when run. Keep in mind that behavior settings
+	are dynamic. All of these can be changed as the simulation
+	is run.
+
+Use:
+	Run:					-run simulation, generating if necessary
+	Play speed:				-set run speed
+	Step Simulation:		-step simulation, generating if necessary
+	------------------------------------------------------------------
+	#Robots:				-number robots created at generation
+	Sensor Radius:			-robot sensor radius
+	#Boxes:					-number of boxes created at generation
+	#Colors:				-number of colors of boxes
+	Generate Field:			-generate field with current settings
+	------------------------------------------------------------------
+Robot Behavior:
+Basic:
+	Pick Up:				-allow robots to pick up boxes
+	Box Drop:				-robots drop boxes when finding a similar box
+	Robots Drop:			-drop when a similarly colored robots is
+							encountered, pile size requirement when enabled
+	Secondary Detection:	-detection and motion towards robots that see boxes
+	Avoid Robots:			-avoid robots when without a box
+	Color Congregation:		-when with box robots move toward similarly colored
+							robots, pile size requirement also exists when enabled
+	Motion Randomization:	-move randomly, required to start simulation
+	------------------------------------------------------------------
+Constructive:
+	Pile Size Tracking:		-track number and max of each color box visible
+	Impurity Counting:		-subtract differently colored boxes in size tracking
+	Pile Location Tracking:
+		Standard Tracking:	-track location of piles, stored on robot
+		Data Sharing:		-robots allowed to share pile size and location
+		Central Tracking:	-size and location of largest pile, stored by
+							behavior algorithm, information gleaned from temp
+							size,  location	and max size copied to each robot
