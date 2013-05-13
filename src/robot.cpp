@@ -23,7 +23,8 @@ robot::robot(pt loc_, qreal rad_, std::vector<QColor*> & colors_,
 	field(field_), sensor(NULL), body(NULL)
 {
 	sensor=field->addEllipse(loc.x-rad,loc.y-rad,2*rad,2*rad);
-	body=field->addEllipse(loc.x-3,loc.y-3,6,6,QPen(),QBrush(*colors.back(), Qt::SolidPattern));
+	body=field->addEllipse(loc.x-3,loc.y-3,6,6,QPen(),
+						QBrush(*colors.back(), Qt::SolidPattern));
 }
 
 //run the behavior algorithm
@@ -38,7 +39,8 @@ void robot::updatePos(){
 	if(color_sensor!=color_sensor_n){
 		field->removeItem(sensor);
 		//delete sensor;
-		sensor=field->addEllipse(loc.x-rad,loc.y-rad,2*rad,2*rad,QPen(*colors[color_sensor_n]),
+		sensor=field->addEllipse(loc.x-rad,loc.y-rad,2*rad,2*rad,
+			QPen(*colors[color_sensor_n]),
 			QBrush(QColor(255,255,255,0)));
 	}else sensor->setRect(loc.x-rad,loc.y-rad,2*rad,2*rad);
 	//body color

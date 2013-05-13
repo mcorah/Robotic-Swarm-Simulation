@@ -19,31 +19,47 @@ swarm_gui::swarm_gui()
 	run_clock=new QTimer(this);
 
 	//run, continuous
-	connect(run_button, SIGNAL(clicked()),this,SLOT(run()));
+	connect(run_button,
+				SIGNAL(clicked()),this,SLOT(run()));
 	connect(run_clock, SIGNAL(timeout()), this, SLOT(step()));
 	//step run
-	connect(step_button, SIGNAL(clicked()),this,SLOT(step()));
+	connect(step_button,
+				SIGNAL(clicked()),this,SLOT(step()));
 	//generate
-	connect(generate_button, SIGNAL(clicked()),this,SLOT(generate()));
+	connect(generate_button,
+				SIGNAL(clicked()),this,SLOT(generate()));
 	//dynamic speed control
-	connect(play_speed, SIGNAL(sliderReleased()),this, SLOT(updateSpeed()));
+	connect(play_speed,
+				SIGNAL(sliderReleased()),this, SLOT(updateSpeed()));
 	//behavior controls
-	connect(check_pick_up, SIGNAL(stateChanged(int)),this,SLOT(pickUp(int)));
-	connect(check_box_drop, SIGNAL(stateChanged(int)),this,SLOT(boxDrop(int)));
-	connect(check_robots_drop, SIGNAL(stateChanged(int)),this,SLOT(robotsDrop(int)));
-	connect(check_secondary_box, SIGNAL(stateChanged(int)),this,SLOT(secondaryBox(int)));
-	connect(check_avoid_bot, SIGNAL(stateChanged(int)),this,SLOT(avoidBot(int)));
-	connect(check_congregate_color, SIGNAL(stateChanged(int)),this,SLOT(congregateColor(int)));
-	connect(check_random_dir, SIGNAL(stateChanged(int)),this,SLOT(randomDir(int)));
+	connect(check_pick_up,
+				SIGNAL(stateChanged(int)),this,SLOT(pickUp(int)));
+	connect(check_box_drop,
+				SIGNAL(stateChanged(int)),this,SLOT(boxDrop(int)));
+	connect(check_robots_drop,
+				SIGNAL(stateChanged(int)),this,SLOT(robotsDrop(int)));
+	connect(check_secondary_box,
+				SIGNAL(stateChanged(int)),this,SLOT(secondaryBox(int)));
+	connect(check_avoid_bot,
+				SIGNAL(stateChanged(int)),this,SLOT(avoidBot(int)));
+	connect(check_congregate_color,
+				SIGNAL(stateChanged(int)),this,SLOT(congregateColor(int)));
+	connect(check_random_dir,
+				SIGNAL(stateChanged(int)),this,SLOT(randomDir(int)));
 	//constructive behavior controls
-	connect(check_pile_size, SIGNAL(stateChanged(int)),this,SLOT(pileSize(int)));
-	connect(check_pile_loc, SIGNAL(stateChanged(int)),this,SLOT(pileLoc(int)));
-	connect(check_impurity_count, SIGNAL(stateChanged(int)),this,SLOT(impurityCount(int)));
+	connect(check_pile_size,
+				SIGNAL(stateChanged(int)),this,SLOT(pileSize(int)));
+	connect(check_pile_loc,
+				SIGNAL(stateChanged(int)),this,SLOT(pileLoc(int)));
+	connect(check_impurity_count,
+				SIGNAL(stateChanged(int)),this,SLOT(impurityCount(int)));
 	//control type
-	connect(radio_standard, SIGNAL(clicked(bool)),this,SLOT(standardPiles(bool)));
-	connect(radio_shared, SIGNAL(clicked(bool)),this,SLOT(sharedPiles(bool)));
-	connect(radio_central, SIGNAL(clicked(bool)),this,SLOT(centralPiles(bool)));
-	
+	connect(radio_standard,
+				SIGNAL(clicked(bool)),this,SLOT(standardPiles(bool)));
+	connect(radio_shared,
+				SIGNAL(clicked(bool)),this,SLOT(sharedPiles(bool)));
+	connect(radio_central,
+				SIGNAL(clicked(bool)),this,SLOT(centralPiles(bool)));
 }
 
 //for continuous run, start a timer to call the step function at time intervals
@@ -81,8 +97,10 @@ void swarm_gui::generate(){
 	graphics_field->setScene(field);
 	field->setItemIndexMethod(QGraphicsScene::NoIndex);
 
-	//generate a new world to use the graphicsScene and populate with robots and boxes
-	world=new swarm_world(graphics_field->frameRect().width(), graphics_field->frameRect().height(),
+	//generate a new world to use the graphicsScene
+	//and populate with robots and boxes
+	world=new swarm_world(graphics_field->frameRect().width(),
+		graphics_field->frameRect().height(),
 		spin_bots->value(), spin_radius->value(), spin_boxes->value(),
 		spin_colors->value(), alg, field);
 }
@@ -97,7 +115,8 @@ void swarm_gui::updateSpeed(){
 }
 
 //behavior toggles
-//these all set flags within the robotAlg to change robot behavior in real time
+//these all set flags within the robotAlg
+//to change robot behavior in real time
 
 //basic toggles
 void swarm_gui::pickUp(int state){ alg.pick_up=state; }

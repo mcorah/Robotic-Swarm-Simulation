@@ -10,9 +10,10 @@ Robotic Swarm Simulation, Developed by Micah Corah
 #include "box.h"
 #include "point.h"
 
-robotAlg::robotAlg(qreal depreciation_, bool pick_up_, bool box_drop_, bool robots_drop_,
-	bool secondary_box_, bool avoid_bot_, bool congregate_color_, bool random_dir_,
-	bool pile_size_, bool pile_loc_, bool impurity_count_, unsigned control_type_)
+robotAlg::robotAlg(qreal depreciation_, bool pick_up_,bool box_drop_,
+	bool robots_drop_, bool secondary_box_, bool avoid_bot_,
+	bool congregate_color_, bool random_dir_, bool pile_size_,
+	bool pile_loc_, bool impurity_count_, unsigned control_type_)
 //set initial states of flags
 :pick_up(pick_up_), box_drop(box_drop_), robots_drop(robots_drop_),
 	secondary_box(secondary_box_), avoid_bot(avoid_bot_),
@@ -42,7 +43,8 @@ void robotAlg::findNear(robot & curr){
 	//find nearbye boxes
 	//clear temp sizes
 	for(unsigned i=0;i<curr.piles.size();++i) curr.piles[i].temp=0;
-	//find nearbye boxes in vector of all boxes and push pointers into found_boxes vector
+	//find nearbye boxes in vector of all boxes
+	//and push pointers into found_boxes vector
 	for(std::vector<box*>::iterator i=boxes->begin();i!=boxes->end();++i){
 		if(!(*i)->taken() && distance(curr.loc,(*i)->loc)<curr.rad){
 			//calculate numbers of each kind for pile size tracking
@@ -91,7 +93,9 @@ void robotAlg::managePiles(robot & curr){
 		//copy if piles are good and larger
 		for(unsigned i=0;i<robot_found.size();++i){
 			for(unsigned j=0;j<color_num;++j){
-				if(robot_found[i]->piles[j].loc_good && (robot_found[i]->piles[j].max > curr.piles[j].max || !curr.piles[j].loc_good)){
+				if(robot_found[i]->piles[j].loc_good &&
+					(robot_found[i]->piles[j].max > curr.piles[j].max ||
+					!curr.piles[j].loc_good)){
 					if(distance(curr.loc,robot_found[i]->piles[j].loc)>curr.rad){
 						curr.piles[j].setMax(robot_found[i]->piles[j]);
 					}
@@ -107,7 +111,8 @@ void robotAlg::managePiles(robot & curr){
 			if(curr.piles[i].temp>central_pile[i].max){
 				central_pile[i].temp=curr.piles[i].temp;
 				central_pile[i].update(curr.loc);
-			}else if(!curr.piles[i].loc_good && distance(curr.piles[i].loc, central_pile[i].loc)<2){
+			}else if(!curr.piles[i].loc_good &&
+				distance(curr.piles[i].loc, central_pile[i].loc)<2){
 				central_pile[i].loc_good=false;
 				--central_pile[i].max;
 			}else curr.piles[i].setMax(central_pile[i]);

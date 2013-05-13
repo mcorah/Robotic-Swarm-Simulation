@@ -11,8 +11,11 @@ Robotic Swarm Simulation, Developed by Micah Corah
 #include "robotAlg.h"
 
 //the constructor handles setup of the field
-swarm_world::swarm_world(int width_, int height_, int robot_num, int robot_rad, int box_num, int color_num_, robotAlg & alg_, QGraphicsScene * field_)
-:height(height_), width(width_), iteration(0), field(field_), color_num(color_num_), alg(alg_)
+swarm_world::swarm_world(int width_, int height_, int robot_num,
+	int robot_rad, int box_num, int color_num_,
+	robotAlg & alg_, QGraphicsScene * field_)
+:height(height_), width(width_), iteration(0),
+field(field_), color_num(color_num_), alg(alg_)
 {
 	//set up algorithm
 	alg.setRobots(robots);
